@@ -4,12 +4,32 @@
     <meta charset="UTF-8" />
     <title>My Application</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-
     <div class="container">
-        <h1>Hello There!</h1>
-        <p>To get started, edit <code>src/index.js</code>.</p>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Hello There!</h1>
+                <p>To get started, edit <code>src/index.js</code>.</p>
+            </div>
+        <div class="row">
+            <form action="">
+                <div class="col-xs-4">
+                    <label for="movieTitleInput">Title</label>
+                    <input type="text" name="movieTitleInput" id="movieTitleInput">
+                </div>
+                <div class="col-xs-4">
+                    <label for="movieRatingInput">Rating</label>
+                    <input type="number" name="movieRatingInput" id="movieRatingInput">
+                </div>
+                <div class="col-xs-4"><button type="button" id="submitBtn">Submit New Movie</button></div>
+            </form>
+        </div>
+        </div>
+        <div class="row" id="display-movies">
+                <h1 class="col-xs-12">Loading Movies...</h1>
+        </div>
     </div>
 
     <script src="./main.js"></script>
