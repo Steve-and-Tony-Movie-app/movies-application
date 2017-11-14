@@ -8,3 +8,7 @@ html, body {
     /*transform: translateY(-100%);*/
     text-align: center;
 }
+
+.row {
+    margin-bottom: 12px;
+}

@@ -11,13 +11,13 @@
       "id": 2
     },
     {
-      "title": "abc",
-      "rating": "3",
+      "title": "movie 3",
+      "rating": "4",
       "id": 3
     },
     {
       "title": "test",
-      "rating": "2",
+      "rating": "4",
       "id": 4
     },
     {
@@ -34,6 +34,26 @@
       "title": "123 shade",
       "rating": "3",
       "id": 7
+    },
+    {
+      "title": "great Movie",
+      "rating": "2",
+      "id": 8
+    },
+    {
+      "title": "another good movie",
+      "rating": "5",
+      "id": 9
+    },
+    {
+      "title": "without form",
+      "rating": "1",
+      "id": 10
+    },
+    {
+      "title": "testing",
+      "rating": "3",
+      "id": 11
     }
   ]
 }
