@@ -18,7 +18,7 @@ const movieHTMLbuilder = (movie) => {
     html += `</h4><h4 class="col-xs-4">`;
     html += `Rating: ${movie.rating}`;
     html += `</h4>`;
-    html += `<div class="col-xs-4"><button type="button" id="editBtn${movie.id}">Toggle Edit</button><button type="button" id="deleteBtn${movie.id}">DELETE</button></div>`;
+    html += `<div class="col-xs-4"><button class="btn btn-info" type="button" id="editBtn${movie.id}">Edit</button><button class="btn btn-danger" type="button" id="deleteBtn${movie.id}">DELETE</button></div>`;
     html += `<div class="col-xs-12" id="editInputs${movie.id}"></div></div></div>`;
     return html;
 };
@@ -35,7 +35,7 @@ const movieArrayHTML = (arrayOfMovies) => {
 //-----------------------------------------------------
 // New Movie Adding functions
 
-// adding eventlistener to new movie button
+// adding event listener to new movie button
 const newMovieAdder = () => {
     const submitButton = $(`#submitBtn`);
     const movieField = $(`#movieTitleInput`);
@@ -94,60 +94,60 @@ const editNewMovie = (title, rating, id) => {
 
 // This adds listeners to "Toggle Edit" buttons and generates new text fields to add movie changes with
  const addToggleBtn = (movies) =>{
-     let arrayLength = movies.length;
-     for (let i =1; i<= arrayLength; i++){
-         $(`#editBtn${i}`).click(() => {
+     movies.forEach((element) => {
+         $(`#editBtn${element.id}`).click(() => {
              let editTextHTML = `<div class="row">`;
              editTextHTML += `<div class="row"><div class="col-xs-4">`;
-             editTextHTML += `<input type="text" value="${movies[(i-1)].title}" id="movieTitle${i}">`;
+             editTextHTML += `<input type="text" value="${element.title}" id="movieTitle${element.id}">`;
              editTextHTML += `</div><div class="col-xs-4">`;
-             editTextHTML += `<input type="number" value="${movies[(i-1)].rating}" id="movieRating${i}">`;
+             editTextHTML += `<input type="number" value="${element.rating}" id="movieRating${element.id}">`;
              editTextHTML += `</div><div class="col=xs-4">`;
-             editTextHTML += `<button type="button" id="submitEdit${i}">Submit Edit</button>`;
+             editTextHTML += `<button type="button" id="submitEdit${element.id}">Submit Edit</button>`;
              editTextHTML += `<div></div></div>`;
-             $(`#editInputs${i}`).html(editTextHTML);
-             $(`#submitEdit${i}`).click(() => {
+             $(`#editInputs${element.id}`).html(editTextHTML);
+             $(`#submitEdit${element.id}`).click(() => {
                  console.log("submit edit button is activating");
-                 let newTitle = $(`#movieTitle${i}`).val();
-                 let newRating = $(`#movieRating${i}`).val();
-                 editNewMovie(newTitle, newRating, movies[i-1].id);
+                 let newTitle = $(`#movieTitle${element.id}`).val();
+                 let newRating = $(`#movieRating${element.id}`).val();
+                 editNewMovie(newTitle, newRating, element.id);
              })
          });
-     }
+     });
  };
 
 // --------------------------------------------------
+// this will delete a movie with a confirm prompt
 const deleteMovies = (movies) =>{
-    let arrayLength = movies.length;
-    for (let i = 1; i<= arrayLength; i++){
-        $(`#deleteBtn${i}`).click(() => {
+    //rewriting body
+    movies.forEach((element) => {
+        $(`#deleteBtn${element.id}`).click(() => {
             let url;
             let options;
-            console.log(movies[i]);
-            if (confirm(`Are you Sure you want to delete ${movies[i-1].title}?`)){
-            console.log(movies[i-1]);
-            url = `./api/movies/${movies[i-1].id}`;
-            options = {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            };
-            fetch(url, options)
-                .then(() => {
-                    console.log(`new edit function is firing`);
-                    fetchingMovieList();
-                })
-                .catch(() => { console.log('the upload failed')});
-
-        }})
-}};
+            if (confirm(`Are you Sure you want to delete ${element.title}?`)) {
+                url = `./api/movies/${element.id}`;
+                options = {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                };
+                fetch(url, options)
+                    .then(() => {
+                        console.log(`new edit function is firing`);
+                        fetchingMovieList();
+                    })
+                    .catch(() => {
+                        console.log('the upload failed')
+                    });
+            }});
+    });
+};
 
 
 //----------------------------------------------------
 // This gets updated list of movies from the server and displays them on the screen
 const fetchingMovieList = () => {
-    $(`#display-movies`).html(`<h1>Movies are Loading...</h1>`);
+    $(`#display-movies`).html(`<div class="col-xs-12"><div class="loader"></div></div>`);
     getMovies().then((movies) => {
       $(`#display-movies`).html(movieArrayHTML(movies));
         deleteMovies(movies);
