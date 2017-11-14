@@ -44,6 +44,8 @@ const newMovieAdder = () => {
         let newTitle = movieField.val();
         let newRating = ratingField.val();
         uploadNewMovie(newTitle, newRating);
+        movieField.val("");
+        ratingField.val("");
     });
 };
 
@@ -62,6 +64,7 @@ const uploadNewMovie = (title, rating) => {
   fetch(url, options)
       .then(() => {
       fetchingMovieList();
+
       })
       .catch(() => { alert('the upload failed')});
 };
@@ -114,12 +117,40 @@ const editNewMovie = (title, rating, id) => {
  };
 
 // --------------------------------------------------
+const deleteMovies = (movies) =>{
+    let arrayLength = movies.length;
+    for (let i = 1; i<= arrayLength; i++){
+        $(`#deleteBtn${i}`).click(() => {
+            let url;
+            let options;
+            console.log(movies[i]);
+            if (confirm(`Are you Sure you want to delete ${movies[i-1].title}?`)){
+            console.log(movies[i-1]);
+            url = `./api/movies/${movies[i-1].id}`;
+            options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            };
+            fetch(url, options)
+                .then(() => {
+                    console.log(`new edit function is firing`);
+                    fetchingMovieList();
+                })
+                .catch(() => { console.log('the upload failed')});
 
+        }})
+}};
+
+
+//----------------------------------------------------
 // This gets updated list of movies from the server and displays them on the screen
 const fetchingMovieList = () => {
     $(`#display-movies`).html(`<h1>Movies are Loading...</h1>`);
     getMovies().then((movies) => {
       $(`#display-movies`).html(movieArrayHTML(movies));
+        deleteMovies(movies);
         addToggleBtn(movies);
     }).catch((error) => {
       alert('Oh no! Something went wrong.\nCheck the console for details.');
