@@ -1,7 +1,7 @@
 /**
  * es6 modules and imports
  */
-
+"use strict";
 /**
  * require style imports
  */
@@ -11,11 +11,12 @@ const $ = require('jquery');
 
 // creating the html for each individual movie in the array
 const movieHTMLbuilder = (movie) => {
-  let html = `<h4 class="col-xs-6">`;
+  let html = `<div class="col-xs-12" > <div class="row"><h4 class="col-xs-4">`;
     html += `${movie.title}`;
-    html += `</h4><h4 class="col-xs-6">`;
+    html += `</h4><h4 class="col-xs-4">`;
     html += `Rating: ${movie.rating}`;
     html += `</h4>`;
+    html += `<div class="col-xs-4"><button type="button" id="editBtn${movie.id}">Submit Edited Movie</button></div> </div></div>`;
     return html;
 };
 
@@ -60,15 +61,50 @@ const uploadNewMovie = (title, rating) => {
         console.log('post worked');
         return response.json();
       }).then((data) => {
+      $(`#display-movies`).html(movieArrayHTML(movies));
     console.log(data);
       })
       .catch(() => { alert('the upload failed')});
 };
+// function Delete or Put
+
+const editNewMovie = (title, rating, id) => {
+
+    const upDatedMovie = {title: title, rating: rating};
+    const url = `./api/movies/${id}`;
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(upDatedMovie)
+    };
+    fetch(url, options)
+        .then((response) => {
+            console.log('put worked');
+            return response.json();
+        }).then((data) => {
+        $(`#display-movies`).html(movieArrayHTML(movies));
+        console.log(data);
+    })
+        .catch(() => { alert('the upload failed')});
+};
+
+//
+ const addToggleBtn = (movies) =>{
+     let arrayLength = movies.length;
+     for (let i =1; i<= arrayLength; i++){
+         $(`#editBtn${i}`).click();
+     }
+
+ };
+
 
 // gets the initial ajax request for movies on page load
 getMovies().then((movies) => {
   $(`#display-movies`).html(movieArrayHTML(movies));
   newMovieAdder();
+
 }).catch((error) => {
   alert('Oh no! Something went wrong.\nCheck the console for details.');
   console.log(error);
