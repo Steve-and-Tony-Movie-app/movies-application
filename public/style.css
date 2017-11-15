@@ -8,6 +8,15 @@ body {
     background-color: aqua;
 }
 
+h1, .newMovieSection, .tableHeading, .ratingCol {
+    text-align: center;
+}
+
+.pageTitle {
+    text-decoration: underline;
+    margin-bottom: 25px;
+}
+
 .btn-info {
     margin-right: 5px;
 }
@@ -16,7 +25,7 @@ body {
     position: relative;
     /*top: 50%;*/
     /*transform: translateY(-100%);*/
-    text-align: center;
+    /*text-align: center;*/
     background-color: rgba(255, 255, 255, .8);
     min-height: 100vh;
 }
@@ -55,6 +64,15 @@ body {
 .hidden{
     display:none;
 }
+
+.sortHeads:hover {
+    color: blue;
+}
+
+.sortHeads:active {
+    color: darkblue;
+}
+
 /*#display-movies, .newMovieSection {*/
     /*background-color: rgba(255, 255, 255, .8);*/
 /*}*/

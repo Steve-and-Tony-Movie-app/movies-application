@@ -9,17 +9,19 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 pageTitle">
                 <h1>Movies, Movies, Movies!</h1>
             </div>
             <div class="row">
-                    <div class="col-xs-12 newMovieSection" >
-                        <div class="row">
-                        <div class="col-xs-4">
-                        <label for="movieTitleInput">Title:</label>
-                        <input type="text" name="movieTitleInput" id="movieTitleInput">
-                    </div>
-                        <div class="col-xs-4">
+                <div class="col-xs-12 newMovieSection" >
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="text" name="movieTitleInput" id="movieTitleInput" placeholder="movie title...">
+                        </div>
+                        <div class="col-xs-3">
+                            <input type="text" name="movieTitleInput" id="movieGenre" placeholder="movie genre...">
+                        </div>
+                        <div class="col-xs-3">
                             <label for="movieRatingInput">Rating:</label>
                             <select name="movieRatingInput" id="movieRatingInput">
                                 <option value="1">1</option>
@@ -28,18 +30,19 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            <!--<label for="movieRatingInput">Rating</label>-->
-                            <!--<input type="number" name="movieRatingInput" id="movieRatingInput">-->
                         </div>
-                    <div class="col-xs-4"><button class="btn btn-info" type="button" id="submitBtn">Submit New Movie</button></div>
+                        <div class="col-xs-3">
+                            <button class="btn btn-info" type="button" id="submitBtn">Submit New Movie</button>
+                        </div>
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
         <div class="row tableHeading">
-            <div class="col-xs-4"><h2>Titles</h2></div>
-            <div class="col-xs-4"><h2>Rating</h2></div>
-            <div class="col-xs-4"><h2>Options</h2></div>
+            <div class="col-xs-3"><h2 id="sortTitles" class="sortHeads">Titles</h2></div>
+            <div class="col-xs-3"><h2 id="sortGenres" class="sortHeads">Genres</h2></div>
+            <div class="col-xs-3"><h2 id="sortRating" class="sortHeads">Rating</h2></div>
+            <div class="col-xs-3"><h2>Options</h2></div>
         </div>
         <div class="divider"></div>
         <!--Below is where movies will be displayed-->

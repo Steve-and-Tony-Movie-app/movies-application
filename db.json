@@ -2,51 +2,61 @@
   "movies": [
     {
       "title": "Casablanca",
+      "genre": "Romance",
       "rating": "4",
       "id": 1
     },
     {
       "title": "Star Wars: A New Hope",
+      "genre": "Sci-Fi",
       "rating": "5",
       "id": 2
     },
     {
       "title": "I got Your Movie 3",
+      "genre": "Comedy",
       "rating": "4",
       "id": 3
     },
     {
       "title": "Testing the Line",
+      "genre": "War",
       "rating": "4",
       "id": 4
     },
     {
       "title": "123 Crayon  Colors",
+      "genre": "Documentary",
       "rating": "3",
       "id": 6
     },
     {
       "title": "The Great Movie",
+      "genre": "Drama",
       "rating": "2",
       "id": 8
     },
     {
       "title": "The Last Night",
+      "genre": "Romance",
       "rating": "4",
       "id": 9
     },
     {
       "title": "The Good Man",
+      "genre": "Drama",
       "rating": "5",
       "id": 10
     },
     {
       "title": "Avatar 2",
+      "genre": "Sci-Fi",
       "rating": "1",
       "id": 11
     },
     {
       "title": "Another Movie",
+      "genre": "Comedy",
       "rating": "3",
       "id": 12
     }
