@@ -21,11 +21,6 @@
       "id": 4
     },
     {
-      "title": "Another movie",
-      "rating": "2",
-      "id": 5
-    },
-    {
       "title": "123 Crayon  Colors",
       "rating": "3",
       "id": 6
@@ -49,6 +44,11 @@
       "title": "Avatar 2",
       "rating": "1",
       "id": 11
+    },
+    {
+      "title": "Another Movie",
+      "rating": "3",
+      "id": 12
     }
   ]
 }

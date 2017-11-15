@@ -123,7 +123,7 @@ const deleteMovies = (movies) =>{
         $(`#deleteBtn${element.id}`).click(() => {
             let url;
             let options;
-            if (confirm(`Are you Sure you want to delete ${element.title}?`)) {
+            if (confirm(`Are you Sure you want to delete:  ${element.title}?`)) {
                 url = `./api/movies/${element.id}`;
                 options = {
                     method: 'DELETE',
@@ -149,12 +149,30 @@ const deleteMovies = (movies) =>{
 const fetchingMovieList = () => {
     $(`#display-movies`).html(`<div class="col-xs-12"><div class="loader"></div></div>`);
     getMovies().then((movies) => {
+        sortByTitle(movies);
       $(`#display-movies`).html(movieArrayHTML(movies));
         deleteMovies(movies);
         addToggleBtn(movies);
     }).catch((error) => {
       alert('Oh no! Something went wrong.\nCheck the console for details.');
       console.log(error);
+    })
+};
+//-----------------------------------------------------
+
+// sorting the movies
+const sortByTitle = movies => {
+    console.log(movies);
+    movies.sort((a,b) => {
+        const moviesA = a.title.toUpperCase();
+        const moviesB = b.title.toUpperCase();
+        if (moviesA < moviesB) {
+            return -1
+        }
+        if (moviesA > moviesB) {
+            return 1
+        }
+        return 0;
     })
 };
 
